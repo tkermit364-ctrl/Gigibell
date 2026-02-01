@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gigibell Player</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #fff;
+    }
+
+    .player {
+      background: rgba(0,0,0,0.6);
+      border-radius: 15px;
+      padding: 20px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+    }
+
+    .album-cover {
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    .track-title {
+      margin-bottom: 15px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    audio {
+      width: 100%;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    .controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .controls button {
+      background: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      font-size: 1.2em;
+      color: #000;
+      transition: transform 0.2s;
+    }
+
+    .controls button:hover {
+      transform: scale(1.2);
+    }
+
+    select {
+      padding: 5px;
+      border-radius: 5px;
+      border: none;
+      font-size: 1em;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="player">
+    <img src="album-cover.jpg" alt="Album Cover" class="album-cover">
+    <div class="track-title" id="track-title">Select a track</div>
+    
+    <audio id="audio" controls>
+      Your browser does not support the audio element.
+    </audio>
+
+    <div class="controls">
+      <button id="prev">&#9664;</button>
+      <button id="next">&#9654;</button>
+    </div>
+
+    <select id="track-list">
+      <option value="" disabled selected>Select a song</option>
+      <option value="DTMF/NUEVAYoL.mp3">NUEVAYoL</option>
+      <option value="DTMF/VOY_A_LLeVARTE_PA_PR.mp3">VOY_A_LLeVARTE_PA_PR</option>
+      <option value="DTMF/BAILE_INoLVIDABLE.mp3">BAILE_INoLVIDABLE</option>
+      <option value="DTMF/PERFuMITO_NUEVO.mp3">PERFuMITO_NUEVO</option>
+      <option value="DTMF/WELTiTA.mp3">WELTiTA</option>
+      <option value="DTMF/VeLDÁ.mp3">VeLDÁ</option>
+      <option value="DTMF/EL_CLúB.mp3">EL_CLúB</option>
+      <option value="DTMF/KETU_TeCRÉ.mp3">KETU_TeCRÉ</option>
+      <option value="DTMF/BOKeTE.mp3">BOKeTE</option>
+      <option value="DTMF/KLOuFRENS.mp3">KLOuFRENS</option>
+      <option value="DTMF/TURiSTA.mp3">TURiSTA</option>
+      <option value="DTMF/CAFé_CON_RON.mp3">CAFé_CON_RON</option>
+      <option value="DTMF/PIToRRO_DE_COCO.mp3">PIToRRO_DE_COCO</option>
+      <option value="DTMF/LO_QUE_LE_PASÓ_A_HAWAii.mp3">LO_QUE_LE_PASÓ_A_HAWAii</option>
+      <option value="DTMF/EoO.mp3">EoO</option>
+      <option value="DTMF/DtMF.mp3">DtMF</option>
+      <option value="DTMF/LA_MuDANZA.mp3">LA_MuDANZA</option>
+    </select>
+  </div>
+
+  <script>
+    const audio = document.getElementById('audio');
+    const trackList = document.getElementById('track-list');
+    const trackTitle = document.getElementById('track-title');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+
+    let tracks = Array.from(trackList.options).slice(1); // skip placeholder
+    let currentIndex = 0;
+
+    function loadTrack(index) {
+      const track = tracks[index];
+      if (!track) return;
+      audio.src = track.value;
+      trackTitle.textContent = track.textContent;
+      trackList.selectedIndex = index + 1; // adjust for placeholder
+    }
+
+    trackList.addEventListener('change', () => {
+      currentIndex = trackList.selectedIndex - 1; // adjust for placeholder
+      loadTrack(currentIndex);
+      audio.play();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
+      loadTrack(currentIndex);
+      audio.play();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % tracks.length;
+      loadTrack(currentIndex);
+      audio.play();
+    });
+  </script>
+</body>
+</html>
