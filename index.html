@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gigibell Player</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(120deg, #120018, #000);
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 40px;
+  letter-spacing: 2px;
+}
+
+.albums {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.album {
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.album img {
+  width: 220px;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+}
+
+.album:hover {
+  transform: scale(1.08);
+  box-shadow: 0 15px 35px rgba(255,255,255,0.2);
+}
+
+.album-title {
+  margin-top: 12px;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Gigibell Player</h1>
+
+<div class="albums">
+
+  <a class="album" href="Gigibell_Player.html">
+    <img src="album-cover.jpg">
+    <div class="album-title">DTMF</div>
+  </a>
+
+  <a class="album" href="Tropicoqueta_Player.html">
+    <img src="tropicoqueta-cover.jpg">
+    <div class="album-title">Tropicoqueta</div>
+  </a>
+
+</div>
+
+</div>
+</body>
+</html>
+
