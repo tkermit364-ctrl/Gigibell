@@ -6,12 +6,16 @@
 <title>Gigibell Player</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=Playfair+Display:wght@500&display=swap');
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(120deg, #120018, #000);
-  color: white;
   min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(255,0,100,0.15), transparent 60%),
+    linear-gradient(180deg, #020b10, #000);
+  color: #fff;
+  font-family: 'Playfair Display', serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,41 +23,65 @@ body {
 
 .container {
   text-align: center;
+  padding: 40px;
 }
 
 h1 {
-  font-size: 3rem;
-  margin-bottom: 40px;
+  font-family: 'Monoton', cursive;
+  font-size: 3.5rem;
+  letter-spacing: 4px;
+  color: #ff3c7d;
+  text-shadow:
+    0 0 5px #ff3c7d,
+    0 0 15px #ff3c7d,
+    0 0 30px rgba(255,60,125,0.8);
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #f5d7a1;
   letter-spacing: 2px;
+  margin-bottom: 50px;
 }
 
 .albums {
   display: flex;
-  gap: 40px;
+  gap: 50px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
 .album {
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s ease;
 }
 
 .album img {
   width: 220px;
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+  border-radius: 18px;
+  box-shadow:
+    0 0 15px rgba(0,255,200,0.3),
+    0 0 35px rgba(255,0,100,0.2);
+  transition: box-shadow 0.3s ease;
 }
 
 .album:hover {
-  transform: scale(1.08);
-  box-shadow: 0 15px 35px rgba(255,255,255,0.2);
+  transform: translateY(-8px) scale(1.05);
+}
+
+.album:hover img {
+  box-shadow:
+    0 0 20px rgba(0,255,200,0.6),
+    0 0 50px rgba(255,0,100,0.5);
 }
 
 .album-title {
-  margin-top: 12px;
-  font-size: 1.1rem;
-  font-weight: bold;
+  margin-top: 14px;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
+  color: #f5d7a1;
 }
 </style>
 </head>
@@ -62,16 +90,17 @@ h1 {
 <div class="container">
 
 <h1>Gigibell Player</h1>
+<div class="subtitle">Havana Nights Edition</div>
 
 <div class="albums">
 
   <a class="album" href="Gigibell_Player.html">
-    <img src="album-cover.jpg">
+    <img src="album-cover.jpg" alt="DTMF Album">
     <div class="album-title">DTMF</div>
   </a>
 
   <a class="album" href="Tropicoqueta_Player.html">
-    <img src="tropicoqueta-cover.jpg">
+    <img src="tropicoqueta-cover.jpg" alt="Tropicoqueta Album">
     <div class="album-title">Tropicoqueta</div>
   </a>
 
@@ -80,4 +109,7 @@ h1 {
 </div>
 </body>
 </html>
+
+
+
 
