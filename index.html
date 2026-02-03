@@ -83,41 +83,31 @@ h1 {
   letter-spacing: 1px;
   color: #f5d7a1;
 }
-/* ===== PALM SHADOWS ===== */
-.palm {
+
+/* Single drifting palm */
+.palm-main {
   position: fixed;
   top: -10%;
   left: -10%;
   width: 120%;
   height: 120%;
+  background-image: url('palms/palm-main.png');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
+  opacity: 0.22;       /* adjust visibility */
+  filter: blur(6px);   /* soft edges */
   pointer-events: none;
   z-index: 1;
-  filter: blur(6px);
-  animation: drift 80s linear infinite;
+  animation: drift 90s linear infinite; /* make it slowly move */
 }
 
-.palm-main {
-  background-image: url('palms/palm-main.png');
-  opacity: 0.22;
-  animation-duration: 90s;
-  transform: scale(1.05);
-}
+/* Drift animation for palm */
+@keyframes drift {
+  0%   { transform: translateY(0px); }
+  50%  { transform: translateY(20px); }
+  100% { transform: translateY(0px); }
 
-.palm-left {
-  background-image: url('palms/palm-left.png');
-  opacity: 0.12;
-  animation-duration: 120s;
-  transform: scale(0.95) translateX(-40px);
-}
-
-.palm-right {
-  background-image: url('palms/palm-right.png');
-  opacity: 0.10;
-  animation-duration: 140s;
-  transform: scale(1.1) translateX(50px);
 }
 
 @keyframes drift {
@@ -159,11 +149,14 @@ h1 {
 
 <!-- Palm shadows -->
 <div class="palm palm-main"></div>
-<div class="palm palm-left"></div>
-<div class="palm palm-right"></div>
 
 <!-- Film grain overlay -->
 <div class="grain"></div>
+
+<!-- Ambient music -->
+<audio autoplay loop>
+  <source src="audio/ambient.mp3" type="audio/mpeg">
+</audio>
 
 <div class="container">
 
