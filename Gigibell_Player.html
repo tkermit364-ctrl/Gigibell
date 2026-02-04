@@ -101,6 +101,13 @@
         0 0 12px rgba(255, 60, 125, 1),
         0 0 24px rgba(255, 60, 125, 0.7);
     }
+    
+    /* Highlight currently playing track in the dropdown */
+#track-list option.playing {
+  background-color: rgba(120, 176, 206, 0.5); /* neon blue glow */
+  color: #fff;
+  font-weight: bold;
+}
 
   </style>
 </head>
@@ -142,46 +149,60 @@
   </div>
 
   <script>
-    const audio = document.getElementById('audio');
-    const trackList = document.getElementById('track-list');
-    const trackTitle = document.getElementById('track-title');
-    const prevBtn = document.getElementById('prev');
-    const nextBtn = document.getElementById('next');
+const audio = document.getElementById('audio');
+const trackList = document.getElementById('track-list');
+const trackTitle = document.getElementById('track-title');
 
-    let tracks = Array.from(trackList.options).slice(1); // skip placeholder
-    let currentIndex = 0;
+// Get all track options except the placeholder
+let tracks = Array.from(trackList.options).slice(1);
+let currentIndex = 0;
 
-    function loadTrack(index) {
-      const track = tracks[index];
-      if (!track) return;
-      audio.src = track.value;
-      trackTitle.textContent = track.textContent;
-      trackList.selectedIndex = index + 1; // adjust for placeholder
-    }
+// Load a track by index
+function loadTrack(index) {
+  const track = tracks[index];
+  if (!track) return;
+  
+  // Set audio source and title
+  audio.src = track.value;
+  trackTitle.textContent = track.textContent;
+  
+  // Update dropdown selection
+  trackList.selectedIndex = index + 1; // +1 because of placeholder
+  
+  // ✅ Highlight currently playing track
+  tracks.forEach(t => t.classList.remove('playing'));
+  tracks[index].classList.add('playing');
+}
 
-   audio.addEventListener('ended', () => {
-     currentIndex = (currentIndex + 1) % tracks.length;
-     loadTrack(currentIndex);
-     audio.play();
-   });
+// Handle manual selection from dropdown
+trackList.addEventListener('change', () => {
+  currentIndex = trackList.selectedIndex - 1; // adjust for placeholder
+  loadTrack(currentIndex);
+  audio.play();
+});
 
-    trackList.addEventListener('change', () => {
-      currentIndex = trackList.selectedIndex - 1; // adjust for placeholder
-      loadTrack(currentIndex);
-      audio.play();
-    });
+// Handle previous/next buttons (if you have them)
+const prevBtn = document.getElementById('prev');
+const nextBtn = document.getElementById('next');
 
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
-      loadTrack(currentIndex);
-      audio.play();
-    });
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + tracks.length) % tracks.length;
+  loadTrack(currentIndex);
+  audio.play();
+});
 
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % tracks.length;
-      loadTrack(currentIndex);
-      audio.play();
-    });
-  </script>
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % tracks.length;
+  loadTrack(currentIndex);
+  audio.play();
+});
+
+// ✅ Autoplay next track when current ends
+audio.addEventListener('ended', () => {
+  currentIndex = (currentIndex + 1) % tracks.length;
+  loadTrack(currentIndex);
+  audio.play();
+});
+</script>
 </body>
 </html>
