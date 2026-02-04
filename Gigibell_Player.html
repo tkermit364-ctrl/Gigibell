@@ -131,6 +131,12 @@
       trackList.selectedIndex = index + 1; // adjust for placeholder
     }
 
+   audio.addEventListener('ended', () => {
+     currentIndex = (currentIndex + 1) % tracks.length;
+     loadTrack(currentIndex);
+     audio.play();
+   });
+
     trackList.addEventListener('change', () => {
       currentIndex = trackList.selectedIndex - 1; // adjust for placeholder
       loadTrack(currentIndex);
