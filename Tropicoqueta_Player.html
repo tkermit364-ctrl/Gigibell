@@ -102,12 +102,47 @@
         0 0 24px rgba(255, 60, 125, 0.7);
     }
     
-    /* ===== MOBILE STYLES ===== */
+    /* ===== MOBILE STYLES FOR TROPICOQUETA ===== */
 @media screen and (max-width: 600px) {
+  /* Mobile-specific background */
   body {
+    background: url('tropicoqueta-background-mobile.png') no-repeat center center fixed;
+    background-size: cover;
     padding: 10px;
   }
 
+  /* Player adjustments */
+  .player {
+    width: 90%;           /* smaller width */
+    max-width: 300px;     /* cap max size */
+    padding: 15px;        /* smaller padding */
+    box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+  }
+
+  .track-title {
+    font-size: 1rem;      /* smaller text */
+  }
+
+  .album-cover {
+    width: 100%;          /* fit player width */
+    border-radius: 12px;
+  }
+
+  /* Horizontally scrollable albums */
+  .albums {
+    display: flex;
+    overflow-x: auto;      /* horizontal scroll */
+    gap: 15px;             /* spacing between albums */
+    padding: 10px 0;
+    -webkit-overflow-scrolling: touch; /* smooth scrolling for iOS */
+  }
+
+  .album img {
+    width: 120px;          /* smaller album cover */
+    flex-shrink: 0;        /* prevent shrinking in scroll */
+  }
+
+  /* Optional: shrink fonts for header / subtitle if you have them */
   h1 {
     font-size: 2rem;
     letter-spacing: 2px;
@@ -118,12 +153,10 @@
     margin-bottom: 30px;
   }
 
-  .albums {
-    gap: 20px;
-  }
-
-  .album img {
-    width: 140px; /* smaller album covers */
+  /* Back button adjustments */
+  .back-button, .ambience-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
 }
 
