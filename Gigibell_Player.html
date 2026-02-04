@@ -132,6 +132,30 @@
   .album img {
     width: 140px; /* smaller album covers */
   }
+
+@media screen and (max-width: 600px) {
+  .player {
+    width: 90%;            /* smaller width */
+    max-width: 300px;      /* cap max size */
+    padding: 15px;         /* less padding */
+  }
+
+  .track-title {
+    font-size: 1rem;       /* smaller text */
+  }
+
+  .album-cover {
+    width: 100%;           /* fit player width */
+    border-radius: 12px;
+  }
+}
+
+  /* Mobile-specific background */
+@media screen and (max-width: 600px) {
+  body {
+    background: url('DTMF-background-mobile.png') no-repeat center center fixed;
+    background-size: cover;
+  }
 }
 
   </style>
