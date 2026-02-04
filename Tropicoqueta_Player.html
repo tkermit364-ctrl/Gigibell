@@ -213,11 +213,15 @@
     let currentIndex = 0;
 
     function loadTrack(index) {
-      const track = tracks[index];
-      if (!track) return;
-      audio.src = track.value;
-      trackTitle.textContent = track.textContent;
-      trackList.selectedIndex = index + 1; // adjust for placeholder
+     const track = tracks[index];
+     if (!track) return;
+
+     audio.src = track.value;
+     trackTitle.textContent = track.textContent;
+     trackList.selectedIndex = index + 1;
+
+     tracks.forEach(t => t.classList.remove('playing'));
+     tracks[index].classList.add('playing');
 
     }
 
@@ -244,6 +248,8 @@
       loadTrack(currentIndex);
       audio.play();
     });
+
+loadTrack(currentIndex);
   </script>
 </body>
 </html>
